@@ -6,12 +6,14 @@ module.exports = {
     entry: {
         main: "./index.js",
     },
-
+    
     output: {
         path: path.join(__dirname, "build"),
         filename: "bundle.js",
     },
-
+    resolve:{
+        extensions:['.js','.jsx']
+    },
     devServer: {
         inline: true,
         port: 8080
@@ -26,7 +28,7 @@ module.exports = {
                 test: /\.less$/, loaders: ['style-loader', 'css-loader', 'autoprefixer-loader', 'less-loader']
             },
             { 
-                test: /\.js$/, 
+                test: /\.(js|jsx)$/, 
                 exclude: /node_modules/, 
                 loader: "babel-loader", 
                 query:

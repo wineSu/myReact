@@ -11,7 +11,9 @@ module.exports = {
         path: path.join(__dirname, "product"),
         filename: "[name].[chunkhash].js",
     },
-
+    resolve:{
+        extensions:['', '.js','.jsx']
+    },
     module: {
         loaders: [
             //less loader
@@ -40,6 +42,9 @@ module.exports = {
         ]
     },
     devtool: 'sourcemap',
+    postcss: [
+        require('autoprefixer') //调用autoprefixer插件，例如 display: flex
+    ],
     plugins: [
         new HtmlWebpackPlugin({
             template: './index.html',

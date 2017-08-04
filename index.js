@@ -1,6 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './src/components/main.js';
+import React from 'react'
+import { render } from 'react-dom'
+import { hashHistory } from 'react-router'
 
-// Render the main component into the dom
-ReactDOM.render(<App />, document.getElementById('App'));
+import RouteMap from './src/router/routeMap'
+
+render(
+    <RouteMap history={hashHistory}/>,
+    document.getElementById('App')
+)
