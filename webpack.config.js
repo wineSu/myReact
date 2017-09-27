@@ -19,7 +19,7 @@ module.exports = {
         port: 8080
     },
     module: {
-        loaders: [
+        rules: [
             //less loader
             {
                 test: /\.css$/, loaders: ['style-loader', 'css-loader', 'autoprefixer-loader']
@@ -33,16 +33,23 @@ module.exports = {
                 loader: "babel-loader", 
                 query:
                   {
-                    presets:['es2015','react']
-                  }
+                    presets:['es2015','react'],
+                    plugins: [
+                        ["import", {libraryName: "antd", style: "css"}]
+                    ]
+                  },
             },
             {
                 test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
                 loaders: [
                     'file-loader?limit=25000&name=images/[hash:8].[name].[ext]',
-                    'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                    'image-webpack-loader?{pngquant:{quality: "65-90", speed: 4}, mozjpeg: {quality: 65}}'
                 ]
-            }
+            },
+            {
+                test: /\.json/,
+                loader: 'json-loader'
+            },
         ]
     },
     plugins: [
@@ -59,6 +66,19 @@ module.exports = {
           compress: {
             warnings: false
           }
-        })
-    ]
+        }),
+    ],
+    devServer: {
+        historyApiFallback: true,
+          hot: true,
+        inline: true,
+        stats: { colors: true },
+        proxy: {
+            '/': {
+              target: 'http://www.mockhttp.cn',
+              pathRewrite: {'^/column' : '/column'},
+              changeOrigin: true
+            }
+         }
+    },
 }

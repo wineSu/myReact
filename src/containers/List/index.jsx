@@ -1,5 +1,5 @@
 import React from 'react'
-import { hashHistory } from 'react-router'
+import { hashHistory,browserHistory } from 'react-router'
 
 class List extends React.Component {
     render() {

@@ -12,6 +12,185 @@ em,i{ font-style:normal; list-style-type:none}
 .clearx {zoom:1;}
 .left{float:left;}
 .right{float:right;}
-
-@base: green;
-span{color: @base;}
+/*-css内部公用函数-*/
+.flex{
+    display: flex;
+    display: -webkit-flex;
+    justify-content:center;
+    align-items: center;
+}
+.border-radius(@radius) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+.box-shadow(@shadow){
+    -webkit-box-shadow: @shadow;
+    -moz-box-shadow: @shadow;
+    box-shadow: @shadow;
+}
+.boxSize(@width; @height) {
+     width: @width;
+     height: @height;
+}
+.bordersize{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.bgSize{
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+.borderTop:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #dcc;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+.borderBottom:after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #333;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+/**/
+.header{
+	height: 0.9rem;
+	width: 100%;
+	background: #009de4;
+	position: fixed;
+	top:0;
+	right: 0;
+	text-align: center;
+	line-height: 0.9rem;
+	color: #fff;
+	font-size: 0.32rem;
+    background:-webkit-gradient(linear, 0 0, 0 bottom, from(#0095da), to(#00b6ef));
+}
+.content{
+	padding-top:0.9rem;
+	padding-bottom: 2rem;
+}
+.goBack{
+	width: 0.48rem;
+	height: 0.48rem;
+	background: url(../img/back.png);
+	.bgSize;
+	position: fixed;
+	top:0.2rem;
+	left: 0.3rem;
+}
+/*首页 --> 导航  start*/
+.navUl{
+	width: 100%;
+	height: 1.8rem;
+	display:flex;
+	text-align:center;
+	justify-content:space-around;
+	align-items:center;
+	.navList{
+		display: flex;
+		flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+	    color: #666;
+	    line-height: 24px;
+	    span{
+	    	display: inline-block;
+	    	width: 1rem;
+	    	height: 1rem;
+	    	background: url(../img/01.jpg);
+	    	.bgSize;
+	    }
+	    .bar2{
+	    	background: url(../img/02.jpg);
+	    	.bgSize;
+	    }
+	    .bar3{
+	    	background: url(../img/03.jpg);
+	    	.bgSize;
+	    }
+	    .bar4{
+	    	background: url(../img/04.jpg);
+	    	.bgSize;
+	    }
+	}
+}
+/*首页 --> 导航   end*/
+/*底部切换*/
+.footer{
+	position:fixed;
+	width:100%;
+	height:1rem;
+	background-color:#f5f5f5;
+	display:flex;
+	left:0%;
+	bottom:0rem;
+	text-align:center;
+	justify-content:space-around;
+	align-items:center;
+	.footerRouter{
+		width: 100%;
+		height: 100%;
+		color: #333;
+		display: flex;
+		flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+		span{
+			display: block;
+			width: 0.4rem;
+			height: 0.4rem;
+		}
+		.bar1{
+			background: url(../img/bar1a.png);
+			background-size:100%;
+		}
+		.bar2{
+			background: url(../img/bar2.png);
+			background-size:100%;
+		}
+		.bar3{
+			background: url(../img/bar3.png);
+			background-size:100%;
+		}
+		.bar4{
+			background: url(../img/bar4.png);
+			background-size:100%;
+		}
+	}
+	.routerActive{
+		color: #009de4;
+		.bar1{
+			background: url(../img/bar1.png);
+			background-size:100%;
+		}
+		.bar2{
+			background: url(../img/bar2a.png);
+			background-size:100%;
+		}
+		.bar3{
+			background: url(../img/bar3a.png);
+			background-size:100%;
+		}
+		.bar4{
+			background: url(../img/bar4a.png);
+			background-size:100%;
+		}
+	}
+}
