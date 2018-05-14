@@ -5,17 +5,22 @@ var path = require('path'),
 module.exports = {
     entry: {
         main: "./index.js",
+        //第三方依赖打包
+        vendor: [
+          'react', 
+          'react-dom', 
+          'react-redux', 
+          'react-router', 
+          'redux', 
+          'es6-promise'
+        ]
     },
     output: {  
-        path: path.join(__dirname, "product"),  
-        filename: "[name].[chunkhash].js",
+        path: path.resolve(__dirname, "product"),  
+        filename: "js/[name].[chunkhash].js",
     },
     resolve:{
         extensions:['.js','.jsx']
-    },
-    devServer: {
-        inline: true,
-        port: 8080
     },
     devtool: 'sourcemap',  
     module: {
@@ -33,7 +38,10 @@ module.exports = {
                 loader: "babel-loader", 
                 query:
                   {
-                    presets:['es2015','react']
+                    presets:['es2015','react'],
+                    plugins: [
+                        ["import", {libraryName: "antd-mobile", style: "css"}]
+                    ]
                   }
             },
             {
@@ -48,7 +56,6 @@ module.exports = {
     plugins: [  
         new HtmlWebpackPlugin({  
             template: './index.html',  
-            favicon:'./src/img/1.jpg',  
             cache:true,
         }),
         new webpack.HotModuleReplacementPlugin(),  
@@ -60,10 +67,14 @@ module.exports = {
             warnings: false  
           }  
         }),
+        new webpack.DefinePlugin({
+          "process.env":{
+            NODE_ENV:JSON.stringify('production')
+           }
+        }),
         new webpack.optimize.CommonsChunkPlugin({
-            name:'common', // 注意不要.js后缀  
-            filename: "commons.js",  
-            chunks: 'main'  
+            name:'vendor', // 注意不要.js后缀  
+            filename: "js/[name].[hash:8].js"
         }),  
     ]
 }

@@ -16,7 +16,7 @@ module.exports = {
     },
     devServer: {
         inline: true,
-        port: 8080
+        port: 8081
     },
     module: {
         rules: [
@@ -35,7 +35,7 @@ module.exports = {
                   {
                     presets:['es2015','react'],
                     plugins: [
-                        ["import", {libraryName: "antd", style: "css"}]
+                        ["import", {libraryName: "antd-mobile", style: "css"}]
                     ]
                   },
             },
@@ -55,7 +55,6 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './index.html',
-            favicon:'./src/img/1.jpg',
             cache:false,
         }),
         new webpack.HotModuleReplacementPlugin(),
@@ -80,5 +79,5 @@ module.exports = {
               changeOrigin: true
             }
          }
-    },
+    }
 }

@@ -30,6 +30,9 @@ function createListenerCollection() {
         listeners[i]();
       }
     },
+    get: function get() {
+      return next;
+    },
     subscribe: function subscribe(listener) {
       var isSubscribed = true;
       if (next === current) next = current.slice();

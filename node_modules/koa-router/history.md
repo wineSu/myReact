@@ -1,8 +1,28 @@
 # History
 
+## 7.4.0
+
+- Fix router.url() for multiple nested routers [#407](https://github.com/alexmingoia/koa-router/pull/407)
+- `layer.name` added to `ctx` at `ctx.routerName` during routing [#412](https://github.com/alexmingoia/koa-router/pull/412)
+- Router.use() was erroneously settings `(.*)` as a prefix to all routers nested with .use that did not pass an explicit prefix string as the first argument. This resulted in routes being matched that should not have been, included the running of multiple route handlers in error. [#369](https://github.com/alexmingoia/koa-router/issues/369) and [#410](https://github.com/alexmingoia/koa-router/issues/410) include information on this issue.
+
+## 7.3.0
+
+- Router#url() now accepts query parameters to add to generated urls [#396](https://github.com/alexmingoia/koa-router/pull/396)
+
+## 7.2.1
+
+- Respond to CORS preflights with 200, 0 length body [#359](https://github.com/alexmingoia/koa-router/issues/359)
+
+## 7.2.0
+
+- Fix a bug in Router#url and append Router object to ctx. [#350](https://github.com/alexmingoia/koa-router/pull/350)
+- Adds `_matchedRouteName` to context [#337](https://github.com/alexmingoia/koa-router/pull/337)
+- Respond to CORS preflights with 200, 0 length body [#359](https://github.com/alexmingoia/koa-router/issues/359)
+
 ## 7.1.1
 
-- Fix bug where param handlers were run out of order (#282)
+- Fix bug where param handlers were run out of order [#282](https://github.com/alexmingoia/koa-router/pull/282)
 
 ## 7.1.0
 
